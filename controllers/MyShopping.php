@@ -21,7 +21,7 @@ class MyShopping extends Controller {
 		foreach ($products as $product) {
 			$category = '';
 			$attributes = $product->getAttributes();
-			if ($attributes[$myshopping->id]) {
+			if (isset($attributes[$myshopping->id])) {
 				$category_db = $model->getModel('\modules\datafeed_myshopping\classes\models\MyShoppingCategory')->get([
 					'id' => $attributes[$myshopping->id]->product_attribute_category_id,
 				]);
@@ -34,10 +34,15 @@ class MyShopping extends Controller {
 				$image = $this->config->getSiteUrl().$images[0]->getThumbnailUrl();
 			}
 
+			$description = $product->description;
+			$description = str_replace("\n", '', $description);
+			$description = str_replace("\r", '', $description);
+			$description = substr(strip_tags($product->description), 0, 255);
+
 			$data[] = [
 				$product->id,
 				$product->name,
-				substr(strip_tags($product->description), 0, 255),
+				$description,
 				$category,
 				$product->sell,
 				$image = $this->config->getSiteUrl().$product->getUrl($this->url),
