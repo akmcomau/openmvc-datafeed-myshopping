@@ -37,7 +37,7 @@ class MyShopping extends Controller {
 			$description = $product->description;
 			$description = str_replace("\n", '', $description);
 			$description = str_replace("\r", '', $description);
-			$description = substr(strip_tags($product->description), 0, 255);
+			$description = substr(strip_tags($description), 0, 255);
 
 			$data[] = [
 				$product->id,
