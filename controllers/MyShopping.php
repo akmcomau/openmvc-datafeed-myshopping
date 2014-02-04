@@ -45,7 +45,7 @@ class MyShopping extends Controller {
 				$description,
 				$category,
 				$product->sell,
-				$image = $this->config->getSiteUrl().$product->getUrl($this->url),
+				$this->config->getSiteUrl().$product->getUrl($this->url),
 				$image,
 				$product->getBrandName(),
 				'',
