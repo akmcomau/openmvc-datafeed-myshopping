@@ -6,6 +6,11 @@ use core\classes\Model;
 use core\classes\renderable\Controller;
 
 class MyShopping extends Controller {
+
+	public function getAllUrls($include_filter = NULL, $exclude_filter = NULL) {
+		return [];
+	}
+
 	public function index() {
 		$model = new Model($this->config, $this->database);
 		$products = $model->getModel('\modules\products\classes\models\Product')->getMulti();
