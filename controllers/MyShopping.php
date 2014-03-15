@@ -12,6 +12,7 @@ class MyShopping extends Controller {
 	}
 
 	public function index() {
+		$module_config = $this->config->moduleConfig('\modules\datafeed_myshopping');
 		$model = new Model($this->config, $this->database);
 		$products = $model->getModel('\modules\products\classes\models\Product')->getMulti([
 			'site_id' => ['type'=>'in', 'value'=>$this->allowedSiteIDs()],
@@ -62,7 +63,9 @@ class MyShopping extends Controller {
 		}
 
 		$csv = $this->response->arrayToCsv($data);
-		$csv = str_replace('""', '\\"', $csv);
+		if ($module_config->enclosure_escaping == 'backslash') {
+			$csv = str_replace('""', '\\"', $csv);
+		}
 		$this->response->setCsvContent($this, $csv);
 	}
 }

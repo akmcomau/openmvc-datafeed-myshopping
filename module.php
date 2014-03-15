@@ -11,5 +11,6 @@ $_MODULE = [
 	],
 	"default_config" => [
 		"default_category" => "",
+		"enclosure_escaping" => "normal",
 	]
 ];
