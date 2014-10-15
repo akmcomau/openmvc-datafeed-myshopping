@@ -40,7 +40,7 @@ class MyShopping extends Controller {
 			$images = $product->getImages();
 			$image = '';
 			if (isset($images[0])) {
-				$image = $this->config->getSiteUrl().$images[0]->getThumbnailUrl();
+				$image = $images[0]->getThumbnailUrl();
 			}
 
 			$description = $product->description;
@@ -54,7 +54,7 @@ class MyShopping extends Controller {
 				$description,
 				$category,
 				$product->sell,
-				$this->config->getSiteUrl().$product->getUrl($this->url),
+				$product->getUrl($this->url),
 				$image,
 				$product->getBrandName(),
 				'',
